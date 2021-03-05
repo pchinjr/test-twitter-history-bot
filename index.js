@@ -11,7 +11,7 @@ async function route(req) {
     accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   })
 
-  await axios.get('http://history.muffinlabs.com/date')
+  const status = await axios.get('http://history.muffinlabs.com/date')
     .then(response => {
       const data = response.data.data ? response.data.data : {}
       let tweet
@@ -21,14 +21,19 @@ async function route(req) {
       } else {
         tweet = 'Nothing happened today :)'
       }
-      
-      twitterClient.tweets.statusesUpdate({
-        status: tweet
-      }).then(response => {
-        console.log("Tweeted!", response)
-      }).catch(err => {
-        console.error(err)
-      })
+      return tweet
+    }).catch(err => {
+      console.error(err)
+    })
+
+
+
+    console.log(status)
+
+    await twitterClient.tweets.statusesUpdate({
+      status: status
+    }).then(response => {
+      console.log("Tweeted!", response)
     }).catch(err => {
       console.error(err)
     })
