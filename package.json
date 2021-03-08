@@ -4,12 +4,16 @@
   "description": "Begin basic Hello World! app for Node",
   "arc": {
     "app": "hello-world",
-    "http": [
+    "http":
       {
         "/": {
           "method": "any",
           "src": "."
         }
+      },
+    "scheduled": [
+      {
+        "tweet": "rate(1 day)"
       }
     ]
   },
