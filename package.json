@@ -1,22 +1,7 @@
 {
-  "name": "begin-app",
+  "name": "twitter-bot-begin",
   "version": "0.0.0",
-  "description": "Begin basic Hello World! app for Node",
-  "arc": {
-    "app": "hello-world",
-    "http":
-      {
-        "/": {
-          "method": "any",
-          "src": "."
-        }
-      },
-    "scheduled": [
-      {
-        "tweet": "rate(1 day)"
-      }
-    ]
-  },
+  "description": "Begin basic scheduled function for twitter bot",
   "scripts": {
     "start": "cross-env NODE_ENV=testing npx sandbox"
   },
